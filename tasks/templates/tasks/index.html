@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Smart Task Analyzer</title>
+    <link rel="stylesheet" href="{% static 'tasks/styles.css' %}">
+</head>
+<body>
+    <h1>Smart Task Analyzer</h1>
+
+    <!-- Input Section -->
+    <section id="input-section">
+        <h2>Add Task</h2>
+        <form id="task-form">
+            <input type="text" id="title" placeholder="Title" required>
+            <input type="date" id="due_date" placeholder="Due Date">
+            <input type="number" id="estimated_hours" placeholder="Estimated Hours" min="0.1" step="0.1" required>
+            <input type="number" id="importance" placeholder="Importance (1-10)" min="1" max="10" required>
+            <select id="dependencies" multiple></select>
+            <button type="submit">Add Task</button>
+        </form>
+
+        <h2>Bulk JSON Input</h2>
+        <textarea id="bulk-tasks" rows="6" placeholder='Paste JSON array of tasks here'></textarea>
+        <button id="analyze-btn">Analyze Tasks</button>
+
+        <h3>Sorting Strategy</h3>
+        <select id="sorting-strategy">
+            <option value="smart">Smart Balance</option>
+            <option value="fastest">Fastest Wins</option>
+            <option value="high-impact">High Impact</option>
+            <option value="deadline">Deadline Driven</option>
+        </select>
+    </section>
+
+    <!-- Output Section -->
+    <section id="output-section">
+        <h2>Task Suggestions</h2>
+        <div id="task-list"></div>
+    </section>
+
+    <script src="{% static 'tasks/script.js' %}"></script>
+</body>
+</html>
